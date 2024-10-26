@@ -1,5 +1,4 @@
-﻿@using Markata.Data
-@model Markata.Models.OrderForCreation
+﻿@model Markata.Models.OrderForCreation
 @{
     ViewData["Title"] = "New Order";
 }
@@ -7,27 +6,56 @@
 <div class="row">
     <div class="col-3">
     </div>
-    <div class="col-6">
 
-      <label>Name: </label> <br />
-      <input class="form-control" asp-for="Name" type="text" /> <br />
-      <div class="col-6">
-          <label>Order: </label>
-          <select class="form-control" asp-for="ProductPrice"><br>
-              @foreach (var g in Model.Products)
-              {
-                  <option value="@g.Id">@g.Name</option>
-              }
-          </select>
-          <label>Quantity: </label>
-          <input class="form-control" asp-for="Quantity" type="number" min="1"><br />
-              <label>Cost:  </label>
-              <input class="form-control" asp-for="Cost" type="double" min="0"><br />
+    <form asp-action="Create">
+        <div class="col-6">
+
+          <label>Name: </label> <br />
+          <input class="form-control" asp-for="Name" type="text" /> <br />
+          <div class="col-6">
+              <label>Order: </label>
+              <select onchange="FirstPrice()" id="opsion" class="form-control" asp-for="ProductId"><br>
+                  @foreach (var g in Model.Products)
+                  {
+                      <option class="@g.Price" value="@g.Id">@g.Name</option>
+                  }
+              </select>
+            <label>Quantity: </label>
+            <input id="quantity" onchange="ChangePrice()" class="form-control" asp-for="Quantity" type="number" min="1"><br />
+            <label>Cost:  </label>
+            <input id="totalCost" readonly class="form-control" asp-for="Cost" type="number" min="0"><br />
  
-      </div>
+          </div>
 
-        <button class="btn btn-primary">Submit</button>
-    </div>
+            <button class="btn btn-primary">Submit</button>
+        </div>
+    </form>
     <div class="col-3">
     </div>
 </div>
+
+@section Scripts {
+    <script>
+
+        function FirstPrice() {
+            let price = $('select[id="opsion"] :selected').attr('class');
+            let cost = document.getElementById('totalCost');
+
+            let quantity = document.getElementById('quantity').value;
+            if (quantity != 0) {
+                cost.value = price * quantity;
+            }
+            
+        }
+
+        function ChangePrice() {
+
+            let price = $('select[id="opsion"] :selected').attr('class');
+            let quantity = document.getElementById('quantity').value;
+            let cost = document.getElementById('totalCost');
+
+            cost.value = price * quantity;
+        }
+        
+    </script>
+}

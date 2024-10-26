@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Markata.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20241024210203_Product")]
-    partial class Product
+    [Migration("20241026085659_Init")]
+    partial class Init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

@@ -1,0 +1,18 @@
+﻿@model Markata.Models.ProductForModification
+@{
+    ViewData["Title"] = "Edit Product";
+}
+
+<form asp-action="Edit">
+    <div class="row">
+        <div class="col-6">
+            <label>Name: </label>
+            <input class="form-control" asp-for="Name" type="text" /><br>
+            <label>Price: </label>
+            <input class="form-control" asp-for="Price" type="double" /><br>
+        </div>
+       
+    </div>
+
+    <button class="btn btn-primary">Submit</button>
+</form>

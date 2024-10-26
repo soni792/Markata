@@ -1,0 +1,34 @@
+﻿@model Markata.Models.OrderForModification
+@{
+    ViewData["Title"] = "Edit Order";
+}
+<div class="row">
+    <div class="col-3">
+    </div>
+    <div class="col-6">
+        <form asp-action="Create">
+            <label>Name: </label> <br />
+            <input class="form-control" asp-for="Name" type="text" /> <br />
+            <div class="col-6">
+                <label>Products: </label>
+                <select class="form-control" asp-for="ProductPrice">
+                    @foreach (var g in Model.Products)
+                    {
+                        var s = Model.SelectedProductId == g.Id;
+                        <option selected="@s" value="@g.Id">@g.Name</option>
+                    }
+                </select>
+
+
+                    <label>Quantity: </label>
+                    <input class="form-control" asp-for="Quantity" type="number" min="1"><br />
+                    <label>Cost: </label>
+                    <input class="form-control" asp-for="Cost" type="double" min="0"><br />
+            </div>
+
+            <button class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+    <div class="col-3">
+    </div>
+</div>

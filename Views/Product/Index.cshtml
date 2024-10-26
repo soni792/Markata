@@ -1,0 +1,31 @@
+﻿@model List<Markata.Data.Product>
+@{
+    ViewData["Title"] = "Product List";
+}
+
+<table class="table table-hover" width="100%">
+    <a class="btn btn-success" asp-action="Create">Create New</a>
+  
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>@product.Id</td>
+                <td>@product.Name</td>
+                <td>@product.Price</td>
+                <td>
+                    <a class="btn btn-outline-primary" asp-action="Edit" asp-route-id="@product.Id">Edit</a>
+                    <a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@product.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
